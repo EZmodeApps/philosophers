@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/caniseed/Desktop/philosophers/philosophers/philo.c
+philo.h
+/Users/caniseed/Desktop/philosophers/philosophers/philo.h
+
+/Users/caniseed/Desktop/philosophers/philosophers/philo.h
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+pthread.h
+-
+string.h
+-
+sys/time.h
+-
+

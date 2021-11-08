@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/10/27 23:43:56 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/08 21:30:37 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,37 +67,108 @@ void	check_for_error(int argc, char **argv)
 	}
 }
 
-t_arg	data_init(void)
+t_arg	*data_init(char **argv)
 {
-	t_arg *data;
+	t_arg	*data;
 
 	data = malloc(sizeof(t_arg));
 	if (!data)
 		exit(ERROR);
-	data->number_of_philo = 0;
-	data->time_to_die = 0;
-	data->time_to_eat = 0;
-	data->time_to_sleep = 0;
-	data->time_to_sleep = 0;
-	data->number_of_times_each_philo_must_eat = 0;
-	data->philo = malloc(sizeof(t_philo));
+	data->number_of_philo = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		data->number_of_times_each_philo_must_eat = ft_atoi(argv[5]);
+	else
+		data->number_of_times_each_philo_must_eat = 0;
+	data->philo = malloc(sizeof(t_philo) * data->number_of_philo);
 	if (!data->philo)
 	{
 		free(data);
 		exit(ERROR);
 	}
-	data->philo->tread = 0;
-	data->philo->time_of_last_meal = 0;
-	data->philo->id = 0;
-	data->philo->number_of_forks = 0;
-	data->philo->number_of_meals_eaten = 0;
+	return (data);
+}
+
+unsigned long get_time(void)
+{
+	unsigned long result;
+	struct timeval time;
+
+	gettimeofday(&time, NULL);
+	result = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return(result);
+}
+
+void	my_sleep(unsigned long time_num)
+{
+	struct timeval time;
+
+	while (gettimeofday(&time, NULL) < time_num)
+		usleep(100);
+}
+
+void	*philo_actions(void *data)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)data;
+	philo->time_from_start = get_time();
+	philo->time_of_last_meal = get_time();
+	printf("%ld\n %ld\n", philo->time_from_start, philo->time_of_last_meal);
+	pthread_mutex_lock(&philo->right_fork);
+	pthread_mutex_lock(&philo->left_fork);
+	printf("%ld Philosopher №%d is eating\n", get_time() - philo->time_from_start, philo->id);
+	my_sleep(g_data->time_to_eat * 1000);
+	pthread_mutex_unlock(&philo->right_fork);
+	pthread_mutex_unlock(&philo->left_fork);
+	printf("%ld Philosopher №%d is sleeping\n", get_time() - philo->time_from_start, philo->id);
+	my_sleep(g_data->time_to_sleep * 1000);
+	printf("%ld Philosopher №%d is thinking\n", get_time() - philo->time_from_start, philo->id);
+	return (NULL);
+}
+
+void even_tread_create(void)
+{
+	int i;
+
+	i = 1;
+	while (i < g_data->number_of_philo)
+	{
+		g_data->philo->id = i + 1;
+		pthread_create(&g_data->philo->thread, NULL, philo_actions, (void *)&g_data->philo[i]);
+		i += 2;
+	}
+}
+
+void odd_tread_create(void)
+{
+	int i;
+
+	i = 0;
+	while (i < g_data->number_of_philo)
+	{
+		g_data->philo->id = i + 1;
+		pthread_create(&g_data->philo->thread, NULL, philo_actions, (void *)&g_data->philo[i]);
+		i += 2;
+	}
 }
 
 int	main(int argc, char **argv)
 {
-	t_arg	*data; //????
+//	t_arg	*data;//????
 
 	check_for_error(argc, argv);
-	data = data_init();
+	g_data = malloc(sizeof(t_arg));
+	data_init(argv);
+	even_tread_create();
+	odd_tread_create();
+	int i = 0;
+	while (i < g_data->number_of_philo)
+	{
+		pthread_join(g_data->philo[i].thread, NULL);
+		i++;
+	}
 	return (SUCCESS);
 }
