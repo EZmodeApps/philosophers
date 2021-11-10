@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/09 21:38:34 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/10 21:06:38 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,17 +110,13 @@ unsigned long get_time(void)
 
 void	my_sleep(unsigned long time_wait, unsigned long start_time)
 {
-	unsigned long n = get_time() - start_time;
-//	printf("%ld\n", n);
-//	printf("%ld\n", get_time());
-//	printf("%ld\n", start_time);
-//	printf("%ld\n", time_wait);
+	unsigned long n;
+
+	n = get_time() - start_time;
 	while (n < time_wait)
 	{
 		n = get_time() - start_time;
-		//printf("%ld\n", n);
-		usleep(100);
-		//printf("1\n");
+		usleep(1000);
 	}
 }
 
@@ -134,28 +130,29 @@ void	*philo_actions(void *data)
 	philo->current_time = get_time() - philo->time_from_start;
 	philo->left_fork = philo->id;
 	if (philo->id == g_data->number_of_philo)
-		philo->right_fork = 1;
+		philo->right_fork = 0;
 	else
 		philo->right_fork = philo->id + 1;
 	while (1)
 	{
-		pthread_mutex_lock(&g_data->forks[philo->left_fork]);
-		printf("%ld Philosopher %d took a left fork\n", get_time() - philo->time_from_start, philo->id);
 		pthread_mutex_lock(&g_data->forks[philo->right_fork]);
-		printf("%ld Philosopher %d took a right fork\n", get_time() - philo->time_from_start, philo->id);
-		printf("%ld Philosopher %d is eating\n", get_time() - philo->time_from_start, philo->id);
+		printf("%ld %d has taken a fork\n", get_time() - philo->time_from_start, philo->id);
+		pthread_mutex_lock(&g_data->forks[philo->left_fork]);
+		printf("%ld %d has taken a fork\n", get_time() - philo->time_from_start, philo->id);
+		printf("%ld %d is eating\n", get_time() - philo->time_from_start, philo->id);
 		philo->is_eating_now = 1;
+		philo->number_of_meals_eaten++;
 		my_sleep(g_data->time_to_eat, philo->time_from_start);
-		//printf("Hello\n");
-		//usleep(g_data->time_to_eat * 1000);
+		//usleep(g_data->time_to_eat);
 		pthread_mutex_unlock(&g_data->forks[philo->left_fork]);
 		pthread_mutex_unlock(&g_data->forks[philo->right_fork]);
 		philo->is_eating_now = 0;
-		printf("%ld Philosopher %d is sleeping\n", get_time() - philo->time_from_start, philo->id);
+		printf("%ld %d is sleeping\n", get_time() - philo->time_from_start, philo->id);
 		my_sleep(g_data->time_to_sleep, philo->time_from_start);
-		printf("%ld Philosopher %d is thinking\n", get_time() - philo->time_from_start, philo->id);
+		printf("%ld %d is thinking\n", get_time() - philo->time_from_start, philo->id);
+		usleep(1000);
 	}
-//	return (NULL);
+	return (NULL);
 }
 
 void even_tread_create(void)
@@ -189,7 +186,7 @@ int	main(int argc, char **argv)
 //	t_arg	*data;//????
 	int i;
 
-	i = 1;
+	i = 0;
 	check_for_error(argc, argv);
 	g_data = malloc(sizeof(t_arg));
 	data_init(argv);
@@ -199,7 +196,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	even_tread_create();
-	usleep(1000);
+	//usleep(1000);
 	odd_tread_create();
 	i = 0;
 	while (i < g_data->number_of_philo)
