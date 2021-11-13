@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/09 20:39:58 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/13 19:17:44 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ typedef struct s_arg
 	int		time_to_sleep;
 	pthread_mutex_t *forks;//массив вилок sizeof * кол-во фил
 	int		number_of_times_each_philo_must_eat; // number_of_meals
+	unsigned long time_start;
 	t_philo	*philo;
 }				t_arg;
 
 t_arg *g_data;
+pthread_mutex_t g_monitor;
 
 
 #endif
