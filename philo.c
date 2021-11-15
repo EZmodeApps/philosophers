@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/15 19:49:53 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/15 20:39:42 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void print_message(int flag, int id, unsigned long time)
 	}
 	if (flag == 5)
 	{
-		printf("%ld %d died\n", get_time() - time, id);
+		printf("%ld %d died \n", get_time() - time, id);
 		return ;
 	}
 
@@ -271,8 +271,9 @@ int waaiter(void)
 //			printf("%ld\n", get_time() - g_data->philo[i].time_of_last_meal);
 //			printf("%ld\n", g_data->philo[i].time_of_last_meal);
 //			printf("%ld\n", g_data->philo[i].time_from_start);
-			if (g_data->philo[i].time_of_last_meal - g_data->philo[i].time_from_start > g_data->time_to_eat)
+			if (get_time() - g_data->philo[i].time_of_last_meal > g_data->time_to_eat)
 			{
+				printf("%ld\n", g_data->philo[i].time_of_last_meal);
 				print_message(5, g_data->philo[i].id, g_data->philo[i].time_from_start);
 //				exit(ERROR);
 				return(2);
