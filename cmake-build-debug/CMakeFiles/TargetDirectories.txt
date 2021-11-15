@@ -1,3 +1,3 @@
-/Users/ez_mode/Developer/GitHub/philosophers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/ez_mode/Developer/GitHub/philosophers/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ez_mode/Developer/GitHub/philosophers/cmake-build-debug/CMakeFiles/philosophers.dir
+/Users/caniseed/Desktop/philo2/philosophers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/caniseed/Desktop/philo2/philosophers/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/caniseed/Desktop/philo2/philosophers/cmake-build-debug/CMakeFiles/philosophers.dir

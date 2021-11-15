@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/ez_mode/Developer/GitHub/philosophers/philo.c
+/Users/caniseed/Desktop/philo2/philosophers/philo.c
 philo.h
-/Users/ez_mode/Developer/GitHub/philosophers/philo.h
+/Users/caniseed/Desktop/philo2/philosophers/philo.h
 
-/Users/ez_mode/Developer/GitHub/philosophers/philo.h
+/Users/caniseed/Desktop/philo2/philosophers/philo.h
 stdio.h
 -
 stdlib.h

@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/13 19:17:44 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:51:54 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define SUCCESS 0
 # define ERROR 1
+# define DEATH 2
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -44,13 +45,12 @@ typedef struct s_arg
 	int		time_to_eat;
 	int		time_to_sleep;
 	pthread_mutex_t *forks;//массив вилок sizeof * кол-во фил
+	pthread_mutex_t print_mutex;
 	int		number_of_times_each_philo_must_eat; // number_of_meals
 	unsigned long time_start;
 	t_philo	*philo;
 }				t_arg;
 
 t_arg *g_data;
-pthread_mutex_t g_monitor;
-
 
 #endif
