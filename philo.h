@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/15 16:51:54 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:23:22 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define SUCCESS 0
 # define ERROR 1
 # define DEATH 2
+# define FULL 3
 
 # include <stdio.h>
 # include <stdlib.h>
