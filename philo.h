@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/16 16:23:22 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/16 20:25:12 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define SUCCESS 0
 # define ERROR 1
 # define DEATH 2
-# define FULL 3
+# define NO_MEALS_LEFT 3
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,31 +27,27 @@
 
 typedef struct s_philo
 {
-	unsigned long time_from_start;
-	unsigned long current_time;
-	unsigned long time_of_last_meal;
-	unsigned long time_without_meal;
-	int is_eating_now;
-	int	id;
-	int	number_of_meals_eaten;
-	pthread_t thread;
-	int right_fork;
-	int left_fork;
+	unsigned long	time_from_start;
+	unsigned long	time_of_last_meal;
+	int				id;
+	int				number_of_meals_eaten;
+	pthread_t		thread;
+	int				right_fork;
+	int				left_fork;
 }				t_philo;
 
 typedef struct s_arg
 {
-	int		number_of_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	pthread_mutex_t *forks;//массив вилок sizeof * кол-во фил
-	pthread_mutex_t print_mutex;
-	int		number_of_times_each_philo_must_eat; // number_of_meals
-	unsigned long time_start;
-	t_philo	*philo;
+	int				number_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	int				number_of_times_each_philo_must_eat;
+	t_philo			*philo;
 }				t_arg;
 
-t_arg *g_data;
+t_arg	*g_data;
 
 #endif

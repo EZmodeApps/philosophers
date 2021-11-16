@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/caniseed/Desktop/philo2/philosophers
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/caniseed/Desktop/philosophers/philosophers
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/caniseed/Desktop/philo2/philosophers/cmake-build-debug
+-- Build files have been written to: /Users/caniseed/Desktop/philosophers/philosophers/cmake-build-debug
