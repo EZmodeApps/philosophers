@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(philosophers
         philo.c
-        philo.h)
+        philo.h ft_atoi.c functions_1.c functions_2.c data_treads_init.c)

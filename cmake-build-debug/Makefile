@@ -129,6 +129,102 @@ philosophers/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/build
 .PHONY : philosophers/fast
 
+data_treads_init.o: data_treads_init.c.o
+.PHONY : data_treads_init.o
+
+# target to build an object file
+data_treads_init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_treads_init.c.o
+.PHONY : data_treads_init.c.o
+
+data_treads_init.i: data_treads_init.c.i
+.PHONY : data_treads_init.i
+
+# target to preprocess a source file
+data_treads_init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_treads_init.c.i
+.PHONY : data_treads_init.c.i
+
+data_treads_init.s: data_treads_init.c.s
+.PHONY : data_treads_init.s
+
+# target to generate assembly for a file
+data_treads_init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_treads_init.c.s
+.PHONY : data_treads_init.c.s
+
+ft_atoi.o: ft_atoi.c.o
+.PHONY : ft_atoi.o
+
+# target to build an object file
+ft_atoi.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/ft_atoi.c.o
+.PHONY : ft_atoi.c.o
+
+ft_atoi.i: ft_atoi.c.i
+.PHONY : ft_atoi.i
+
+# target to preprocess a source file
+ft_atoi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/ft_atoi.c.i
+.PHONY : ft_atoi.c.i
+
+ft_atoi.s: ft_atoi.c.s
+.PHONY : ft_atoi.s
+
+# target to generate assembly for a file
+ft_atoi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/ft_atoi.c.s
+.PHONY : ft_atoi.c.s
+
+functions_1.o: functions_1.c.o
+.PHONY : functions_1.o
+
+# target to build an object file
+functions_1.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/functions_1.c.o
+.PHONY : functions_1.c.o
+
+functions_1.i: functions_1.c.i
+.PHONY : functions_1.i
+
+# target to preprocess a source file
+functions_1.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/functions_1.c.i
+.PHONY : functions_1.c.i
+
+functions_1.s: functions_1.c.s
+.PHONY : functions_1.s
+
+# target to generate assembly for a file
+functions_1.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/functions_1.c.s
+.PHONY : functions_1.c.s
+
+functions_2.o: functions_2.c.o
+.PHONY : functions_2.o
+
+# target to build an object file
+functions_2.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/functions_2.c.o
+.PHONY : functions_2.c.o
+
+functions_2.i: functions_2.c.i
+.PHONY : functions_2.i
+
+# target to preprocess a source file
+functions_2.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/functions_2.c.i
+.PHONY : functions_2.c.i
+
+functions_2.s: functions_2.c.s
+.PHONY : functions_2.s
+
+# target to generate assembly for a file
+functions_2.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/functions_2.c.s
+.PHONY : functions_2.c.s
+
 philo.o: philo.c.o
 .PHONY : philo.o
 
@@ -162,6 +258,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... philosophers"
+	@echo "... data_treads_init.o"
+	@echo "... data_treads_init.i"
+	@echo "... data_treads_init.s"
+	@echo "... ft_atoi.o"
+	@echo "... ft_atoi.i"
+	@echo "... ft_atoi.s"
+	@echo "... functions_1.o"
+	@echo "... functions_1.i"
+	@echo "... functions_1.s"
+	@echo "... functions_2.o"
+	@echo "... functions_2.i"
+	@echo "... functions_2.s"
 	@echo "... philo.o"
 	@echo "... philo.i"
 	@echo "... philo.s"

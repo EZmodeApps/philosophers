@@ -80,6 +80,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/caniseed/Desktop/philosophers/philosophers/data_treads_init.c">
+			<Option target="philosophers"/>
+		</Unit>
+		<Unit filename="/Users/caniseed/Desktop/philosophers/philosophers/ft_atoi.c">
+			<Option target="philosophers"/>
+		</Unit>
+		<Unit filename="/Users/caniseed/Desktop/philosophers/philosophers/functions_1.c">
+			<Option target="philosophers"/>
+		</Unit>
+		<Unit filename="/Users/caniseed/Desktop/philosophers/philosophers/functions_2.c">
+			<Option target="philosophers"/>
+		</Unit>
 		<Unit filename="/Users/caniseed/Desktop/philosophers/philosophers/philo.c">
 			<Option target="philosophers"/>
 		</Unit>
