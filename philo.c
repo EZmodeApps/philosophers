@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 16:55:10 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:29:11 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ unsigned long	get_time(void)
 	return (result);
 }
 
+void	data_init_2(void)
+{
+	pthread_mutex_init(&g_data->print_mutex, NULL);
+	g_data->time_from_start = get_time();
+}
+
 t_arg	*data_init(char **argv)
 {
 	g_data = malloc(sizeof(t_arg));
@@ -87,13 +93,13 @@ t_arg	*data_init(char **argv)
 		free(g_data);
 		return ((t_arg *)(ERROR));
 	}
-	pthread_mutex_init(&g_data->print_mutex, NULL);
 	g_data->philo = malloc(sizeof(t_philo) * g_data->number_of_philo);
 	if (!g_data->philo)
 	{
 		free(g_data->forks), free(g_data);
 		return ((t_arg *)(ERROR));
 	}
+	data_init_2();
 	return (g_data);
 }
 
@@ -156,18 +162,18 @@ void	*philo_actions(void *data)
 	while (philo->meals_counter != 0)
 	{
 		pthread_mutex_lock(&g_data->forks[philo->right_fork]);
-		print_message(1, philo->id, philo->time_from_start);
+		print_message(1, philo->id, g_data->time_from_start);
 		pthread_mutex_lock(&g_data->forks[philo->left_fork]);
-		print_message(1, philo->id, philo->time_from_start);
+		print_message(1, philo->id, g_data->time_from_start);
 		philo->time_of_last_meal = get_time();
-		print_message(2, philo->id, philo->time_from_start);
+		print_message(2, philo->id, g_data->time_from_start);
 		my_usleep(g_data->time_to_eat);
 		philo->meals_counter--;
 		pthread_mutex_unlock(&g_data->forks[philo->left_fork]);
 		pthread_mutex_unlock(&g_data->forks[philo->right_fork]);
-		print_message(3, philo->id, philo->time_from_start);
+		print_message(3, philo->id, g_data->time_from_start);
 		my_usleep(g_data->time_to_sleep);
-		print_message(4, philo->id, philo->time_from_start);
+		print_message(4, philo->id, g_data->time_from_start);
 	}
 	philo->meals_counter = g_data->number_of_times_philo_must_eat;
 	return ((void *)FINISHED_EATING);
@@ -189,8 +195,7 @@ void	even_tread_create(void)
 			g_data->philo[i].right_fork = g_data->philo[i].id;
 		pthread_create(&g_data->philo[i].thread, NULL, philo_actions, \
 		(void *)&g_data->philo[i]);
-		g_data->philo[i].time_from_start = get_time();
-		g_data->philo[i].time_of_last_meal = g_data->philo[i].time_from_start;
+		g_data->philo[i].time_of_last_meal = g_data->time_from_start;
 		usleep(100);
 		i += 2;
 	}
@@ -212,8 +217,7 @@ void	odd_tread_create(void)
 			g_data->philo[i].right_fork = g_data->philo[i].id;
 		pthread_create(&g_data->philo[i].thread, NULL, philo_actions, \
 		(void *)&g_data->philo[i]);
-		g_data->philo[i].time_from_start = get_time();// - 1;
-		g_data->philo[i].time_of_last_meal = g_data->philo[i].time_from_start;
+		g_data->philo[i].time_of_last_meal = g_data->time_from_start;
 		usleep(100);
 		i += 2;
 	}
@@ -235,7 +239,7 @@ int	waiter(void)
 			if (starving > g_data->time_to_die)
 			{
 				print_message(5, g_data->philo[i].id, \
-				g_data->philo[i].time_from_start);
+				g_data->time_from_start);
 				return (2);
 			}
 			if (g_data->number_of_times_philo_must_eat > 0 && \
@@ -306,7 +310,7 @@ int	main(int argc, char **argv)
 	int	error;
 
 	error = check_for_error(argc, argv);
-	if (error == 2)
+	if (error == ERROR)
 		return (ERROR);
 	data_init(argv);
 	mutex_init();

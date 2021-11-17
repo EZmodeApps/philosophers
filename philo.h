@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 15:49:00 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:16:13 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 
 typedef struct s_philo
 {
-	unsigned long	time_from_start;
 	unsigned long	time_of_last_meal;
 	int				id;
 	pthread_t		thread;
@@ -44,9 +43,10 @@ typedef struct s_arg
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int				number_of_times_philo_must_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	int				number_of_times_philo_must_eat;
+	unsigned long	time_from_start;
 	t_philo			*philo;
 }				t_arg;
 
