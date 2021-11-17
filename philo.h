@@ -34,6 +34,8 @@ typedef struct s_philo
 	pthread_t		thread;
 	int				right_fork;
 	int				left_fork;
+	int 			meals_counter;
+	int 			finished_eating;
 }				t_philo;
 
 typedef struct s_arg
