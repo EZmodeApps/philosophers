@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/philosophers.dir/data_treads_init.c.o"
+  "CMakeFiles/philosophers.dir/data_threads_init.c.o"
   "CMakeFiles/philosophers.dir/ft_atoi.c.o"
   "CMakeFiles/philosophers.dir/functions_1.c.o"
   "CMakeFiles/philosophers.dir/functions_2.c.o"

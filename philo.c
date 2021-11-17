@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 18:30:08 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:32:26 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	waiter(void)
 		while (i < g_data->number_of_philo)
 		{
 			starving = get_time() - g_data->philo[i].time_of_last_meal;
-			if (starving > g_data->time_to_die)
+			if ((int)starving > g_data->time_to_die)
 			{
 				print_message(5, g_data->philo[i].id, \
 				g_data->time_from_start);

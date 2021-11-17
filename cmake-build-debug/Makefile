@@ -129,29 +129,29 @@ philosophers/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/build
 .PHONY : philosophers/fast
 
-data_treads_init.o: data_treads_init.c.o
-.PHONY : data_treads_init.o
+data_threads_init.o: data_threads_init.c.o
+.PHONY : data_threads_init.o
 
 # target to build an object file
-data_treads_init.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_treads_init.c.o
-.PHONY : data_treads_init.c.o
+data_threads_init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_threads_init.c.o
+.PHONY : data_threads_init.c.o
 
-data_treads_init.i: data_treads_init.c.i
-.PHONY : data_treads_init.i
+data_threads_init.i: data_threads_init.c.i
+.PHONY : data_threads_init.i
 
 # target to preprocess a source file
-data_treads_init.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_treads_init.c.i
-.PHONY : data_treads_init.c.i
+data_threads_init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_threads_init.c.i
+.PHONY : data_threads_init.c.i
 
-data_treads_init.s: data_treads_init.c.s
-.PHONY : data_treads_init.s
+data_threads_init.s: data_threads_init.c.s
+.PHONY : data_threads_init.s
 
 # target to generate assembly for a file
-data_treads_init.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_treads_init.c.s
-.PHONY : data_treads_init.c.s
+data_threads_init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philosophers.dir/build.make CMakeFiles/philosophers.dir/data_threads_init.c.s
+.PHONY : data_threads_init.c.s
 
 ft_atoi.o: ft_atoi.c.o
 .PHONY : ft_atoi.o
@@ -258,9 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... philosophers"
-	@echo "... data_treads_init.o"
-	@echo "... data_treads_init.i"
-	@echo "... data_treads_init.s"
+	@echo "... data_threads_init.o"
+	@echo "... data_threads_init.i"
+	@echo "... data_threads_init.s"
 	@echo "... ft_atoi.o"
 	@echo "... ft_atoi.i"
 	@echo "... ft_atoi.s"

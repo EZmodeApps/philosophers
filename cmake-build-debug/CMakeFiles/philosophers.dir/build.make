@@ -118,18 +118,18 @@ CMakeFiles/philosophers.dir/functions_2.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philosophers.dir/functions_2.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/caniseed/Desktop/philosophers/philosophers/functions_2.c -o CMakeFiles/philosophers.dir/functions_2.c.s
 
-CMakeFiles/philosophers.dir/data_treads_init.c.o: CMakeFiles/philosophers.dir/flags.make
-CMakeFiles/philosophers.dir/data_treads_init.c.o: ../data_treads_init.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/caniseed/Desktop/philosophers/philosophers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/philosophers.dir/data_treads_init.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philosophers.dir/data_treads_init.c.o -c /Users/caniseed/Desktop/philosophers/philosophers/data_treads_init.c
+CMakeFiles/philosophers.dir/data_threads_init.c.o: CMakeFiles/philosophers.dir/flags.make
+CMakeFiles/philosophers.dir/data_threads_init.c.o: ../data_threads_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/caniseed/Desktop/philosophers/philosophers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/philosophers.dir/data_threads_init.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philosophers.dir/data_threads_init.c.o -c /Users/caniseed/Desktop/philosophers/philosophers/data_threads_init.c
 
-CMakeFiles/philosophers.dir/data_treads_init.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philosophers.dir/data_treads_init.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/caniseed/Desktop/philosophers/philosophers/data_treads_init.c > CMakeFiles/philosophers.dir/data_treads_init.c.i
+CMakeFiles/philosophers.dir/data_threads_init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philosophers.dir/data_threads_init.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/caniseed/Desktop/philosophers/philosophers/data_threads_init.c > CMakeFiles/philosophers.dir/data_threads_init.c.i
 
-CMakeFiles/philosophers.dir/data_treads_init.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philosophers.dir/data_treads_init.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/caniseed/Desktop/philosophers/philosophers/data_treads_init.c -o CMakeFiles/philosophers.dir/data_treads_init.c.s
+CMakeFiles/philosophers.dir/data_threads_init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philosophers.dir/data_threads_init.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/caniseed/Desktop/philosophers/philosophers/data_threads_init.c -o CMakeFiles/philosophers.dir/data_threads_init.c.s
 
 # Object files for target philosophers
 philosophers_OBJECTS = \
@@ -137,7 +137,7 @@ philosophers_OBJECTS = \
 "CMakeFiles/philosophers.dir/ft_atoi.c.o" \
 "CMakeFiles/philosophers.dir/functions_1.c.o" \
 "CMakeFiles/philosophers.dir/functions_2.c.o" \
-"CMakeFiles/philosophers.dir/data_treads_init.c.o"
+"CMakeFiles/philosophers.dir/data_threads_init.c.o"
 
 # External object files for target philosophers
 philosophers_EXTERNAL_OBJECTS =
@@ -146,7 +146,7 @@ philosophers: CMakeFiles/philosophers.dir/philo.c.o
 philosophers: CMakeFiles/philosophers.dir/ft_atoi.c.o
 philosophers: CMakeFiles/philosophers.dir/functions_1.c.o
 philosophers: CMakeFiles/philosophers.dir/functions_2.c.o
-philosophers: CMakeFiles/philosophers.dir/data_treads_init.c.o
+philosophers: CMakeFiles/philosophers.dir/data_threads_init.c.o
 philosophers: CMakeFiles/philosophers.dir/build.make
 philosophers: CMakeFiles/philosophers.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/caniseed/Desktop/philosophers/philosophers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable philosophers"
