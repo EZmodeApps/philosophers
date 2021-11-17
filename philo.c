@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 12:51:39 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:55:10 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,12 @@ int	check_for_error(int argc, char **argv)
 		printf("Error: wrong number of philosophers\n");
 		return (ERROR);
 	}
-	if (ft_atoi(argv[2]) < 60)
+	if (ft_atoi(argv[2]) < 60 || ft_atoi(argv[3]) < 60 || ft_atoi(argv[4]) < 60)
 	{
 		printf("Error: too little time to die\n");
 		return (ERROR);
 	}
-	if (ft_atoi(argv[3]) < 60)
-	{
-		printf("Error: too little time to eat\n");
-		return (ERROR);
-	}
-	if (ft_atoi(argv[4]) < 60)
-	{
-		printf("Error: too little time to sleep\n");
-		return (ERROR);
-	}
-	return (5);
+	return (OK);
 }
 
 unsigned long	get_time(void)
@@ -88,9 +78,9 @@ t_arg	*data_init(char **argv)
 	g_data->time_to_eat = ft_atoi(argv[3]);
 	g_data->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
-		g_data->number_of_times_each_philo_must_eat = ft_atoi(argv[5]);
+		g_data->number_of_times_philo_must_eat = ft_atoi(argv[5]);
 	else
-		g_data->number_of_times_each_philo_must_eat = -1;
+		g_data->number_of_times_philo_must_eat = -1;
 	g_data->forks = malloc(sizeof(pthread_mutex_t) * g_data->number_of_philo);
 	if (!g_data->forks)
 	{
@@ -101,8 +91,7 @@ t_arg	*data_init(char **argv)
 	g_data->philo = malloc(sizeof(t_philo) * g_data->number_of_philo);
 	if (!g_data->philo)
 	{
-		free(g_data->forks);
-		free(g_data);
+		free(g_data->forks), free(g_data);
 		return ((t_arg *)(ERROR));
 	}
 	return (g_data);
@@ -115,6 +104,21 @@ void	my_usleep(unsigned long wait_time)
 	check = get_time();
 	while ((get_time() - check) < wait_time)
 		usleep(100);
+}
+
+void	print_message_2(int flag, int id, unsigned long time)
+{
+	if (flag == 4)
+	{
+		printf("%ld %d is thinking\n", time, id);
+		pthread_mutex_unlock(&g_data->print_mutex);
+		return ;
+	}
+	else if (flag == 5)
+	{
+		printf("%ld %d died \n", time, id);
+		return ;
+	}
 }
 
 void	print_message(int flag, int id, unsigned long time)
@@ -141,38 +145,20 @@ void	print_message(int flag, int id, unsigned long time)
 		pthread_mutex_unlock(&g_data->print_mutex);
 		return ;
 	}
-	else if (flag == 4)
-	{
-		printf("%ld %d is thinking\n", time_now, id);
-		pthread_mutex_unlock(&g_data->print_mutex);
-		return ;
-	}
-	else if (flag == 5)
-	{
-		printf("%ld %d died \n", time_now, id);
-		return ;
-	}
+	print_message_2(flag, id, time_now);
 }
 
-void	*philo_actions(void *data) //допилить для ограниченного кол-ва еды
+void	*philo_actions(void *data)
 {
 	t_philo			*philo;
-	int				times_to_eat;
 
 	philo = (t_philo *)data;
-	philo->meals_counter = g_data->number_of_times_each_philo_must_eat;
-	philo->left_fork = philo->id - 1;
-	if (philo->id == g_data->number_of_philo)
-		philo->right_fork = 0;
-	else
-		philo->right_fork = philo->id;
-	while (philo->meals_counter!= 0)
-		{
+	while (philo->meals_counter != 0)
+	{
 		pthread_mutex_lock(&g_data->forks[philo->right_fork]);
 		print_message(1, philo->id, philo->time_from_start);
 		pthread_mutex_lock(&g_data->forks[philo->left_fork]);
 		print_message(1, philo->id, philo->time_from_start);
-		philo->number_of_meals_eaten += 1;
 		philo->time_of_last_meal = get_time();
 		print_message(2, philo->id, philo->time_from_start);
 		my_usleep(g_data->time_to_eat);
@@ -183,8 +169,8 @@ void	*philo_actions(void *data) //допилить для ограниченно
 		my_usleep(g_data->time_to_sleep);
 		print_message(4, philo->id, philo->time_from_start);
 	}
-	philo->meals_counter = g_data->number_of_times_each_philo_must_eat;
-	return ((void *)(4));
+	philo->meals_counter = g_data->number_of_times_philo_must_eat;
+	return ((void *)FINISHED_EATING);
 }
 
 void	even_tread_create(void)
@@ -195,9 +181,12 @@ void	even_tread_create(void)
 	while (i < g_data->number_of_philo)
 	{
 		g_data->philo[i].id = i + 1;
-		g_data->philo[i].number_of_meals_eaten = 0;
-		g_data->philo[i].left_fork = 0;
-		g_data->philo[i].right_fork = 0;
+		g_data->philo[i].meals_counter = g_data->number_of_times_philo_must_eat;
+		g_data->philo[i].left_fork = g_data->philo[i].id - 1;
+		if (g_data->philo[i].id == g_data->number_of_philo)
+			g_data->philo[i].right_fork = 0;
+		else
+			g_data->philo[i].right_fork = g_data->philo[i].id;
 		pthread_create(&g_data->philo[i].thread, NULL, philo_actions, \
 		(void *)&g_data->philo[i]);
 		g_data->philo[i].time_from_start = get_time();
@@ -215,12 +204,15 @@ void	odd_tread_create(void)
 	while (i < g_data->number_of_philo)
 	{
 		g_data->philo[i].id = i + 1;
-		g_data->philo[i].number_of_meals_eaten = 0;
-		g_data->philo[i].left_fork = 0;
-		g_data->philo[i].right_fork = 0;
+		g_data->philo[i].meals_counter = g_data->number_of_times_philo_must_eat;
+		g_data->philo[i].left_fork = g_data->philo[i].id - 1;
+		if (g_data->philo[i].id == g_data->number_of_philo)
+			g_data->philo[i].right_fork = 0;
+		else
+			g_data->philo[i].right_fork = g_data->philo[i].id;
 		pthread_create(&g_data->philo[i].thread, NULL, philo_actions, \
 		(void *)&g_data->philo[i]);
-		g_data->philo[i].time_from_start = get_time() - 1;
+		g_data->philo[i].time_from_start = get_time();// - 1;
 		g_data->philo[i].time_of_last_meal = g_data->philo[i].time_from_start;
 		usleep(100);
 		i += 2;
@@ -246,7 +238,7 @@ int	waiter(void)
 				g_data->philo[i].time_from_start);
 				return (2);
 			}
-			if (g_data->number_of_times_each_philo_must_eat > 0 && \
+			if (g_data->number_of_times_philo_must_eat > 0 && \
 			g_data->philo[i].meals_counter == 0)
 				return (NO_MEALS_LEFT);
 			i++;
@@ -267,42 +259,71 @@ void	mutex_init(void)
 	}
 }
 
-int	main(int argc, char **argv) {
-	int i;
-	int j;
-	int check;
-	int error;
+void	join_thread(void)
+{
+	int	i;
 
 	i = 0;
+	while (i < g_data->number_of_philo)
+	{
+		pthread_join(g_data->philo[i].thread, NULL);
+		i++;
+	}
+}
+
+void	detach_thread(void)
+{
+	int	i;
+
+	i = 0;
+	while (i < g_data->number_of_philo)
+	{
+		pthread_detach(g_data->philo[i].thread);
+		i++;
+	}
+}
+
+void	mutex_destroy_and_free(void)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_unlock(&g_data->print_mutex);
+	pthread_mutex_destroy(&g_data->print_mutex);
+	while (i < g_data->number_of_philo)
+	{
+		pthread_mutex_destroy(&g_data->forks[i]);
+		i++;
+	}
+	free(g_data->forks);
+	free(g_data->philo);
+	free(g_data);
+}
+
+int	main(int argc, char **argv)
+{
+	int	check;
+	int	error;
+
 	error = check_for_error(argc, argv);
 	if (error == 2)
 		return (ERROR);
-	g_data = malloc(sizeof(t_arg));
 	data_init(argv);
 	mutex_init();
 	even_tread_create();
-	usleep(500);
+	usleep(1000);
 	odd_tread_create();
 	check = waiter();
-	i = 0;
-	j = 0;
 	if (check == NO_MEALS_LEFT)
 	{
-		while (j < g_data->number_of_philo)
-		{
-			pthread_join(g_data->philo[j].thread, NULL);
-			j++;
-		}
+		join_thread();
+		mutex_destroy_and_free();
 		return (SUCCESS);
 	}
-	if (check == DEATH)// || check == NO_MEALS_LEFT)
+	if (check == DEATH)
 	{
-		while (i < g_data->number_of_philo)
-		{
-			pthread_detach(g_data->philo[i].thread);
-			i++;
-		}
+		detach_thread();
+		mutex_destroy_and_free();
 		return (ERROR);
 	}
-	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/16 20:25:12 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:49:00 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define ERROR 1
 # define DEATH 2
 # define NO_MEALS_LEFT 3
+# define FINISHED_EATING 4
+# define OK 5
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -30,12 +32,10 @@ typedef struct s_philo
 	unsigned long	time_from_start;
 	unsigned long	time_of_last_meal;
 	int				id;
-	int				number_of_meals_eaten;
 	pthread_t		thread;
 	int				right_fork;
 	int				left_fork;
-	int 			meals_counter;
-	int 			finished_eating;
+	int				meals_counter;
 }				t_philo;
 
 typedef struct s_arg
@@ -46,7 +46,7 @@ typedef struct s_arg
 	int				time_to_sleep;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	int				number_of_times_each_philo_must_eat;
+	int				number_of_times_philo_must_eat;
 	t_philo			*philo;
 }				t_arg;
 
