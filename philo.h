@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 17:50:15 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:16:46 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void			my_usleep(unsigned long wait_time);
 void			print_message_2(int flag, int id, unsigned long time);
 void			print_message(int flag, int id, unsigned long time);
 void			*philo_actions(void *data);
-void			even_tread_create(void);
-void			odd_tread_create(void);
+void			even_thread_create(void);
+void			odd_thread_create(void);
 int				waiter(void);
 void			mutex_init(void);
 void			join_thread(void);

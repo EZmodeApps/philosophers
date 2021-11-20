@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_treads_init.c                               :+:      :+:    :+:   */
+/*   data_threads_init.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 18:30:15 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 18:30:15 by caniseed         ###   ########.fr       */
+/*   Created: 2021/11/18 15:18:06 by caniseed          #+#    #+#             */
+/*   Updated: 2021/11/18 15:18:24 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_arg	*data_init(char **argv)
 	return (g_data);
 }
 
-void	even_tread_create(void)
+void	even_thread_create(void)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ void	even_tread_create(void)
 	}
 }
 
-void	odd_tread_create(void)
+void	odd_thread_create(void)
 {
 	int	i;
 

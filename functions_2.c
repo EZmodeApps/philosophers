@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 18:26:23 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 18:27:07 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:22:09 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	mutex_destroy_and_free(void)
 	int	i;
 
 	i = 0;
-	pthread_mutex_unlock(&g_data->print_mutex);
 	pthread_mutex_destroy(&g_data->print_mutex);
 	while (i < g_data->number_of_philo)
 	{

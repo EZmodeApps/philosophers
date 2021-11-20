@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:24 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 18:32:26 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:20:32 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	waiter(void)
 			{
 				print_message(5, g_data->philo[i].id, \
 				g_data->time_from_start);
-				return (2);
+				return (DEATH);
 			}
 			if (g_data->number_of_times_philo_must_eat > 0 && \
 			g_data->philo[i].meals_counter == 0)
@@ -95,9 +95,9 @@ int	main(int argc, char **argv)
 		return (ERROR);
 	data_init(argv);
 	mutex_init();
-	even_tread_create();
+	even_thread_create();
 	usleep(1000);
-	odd_tread_create();
+	odd_thread_create();
 	check = waiter();
 	if (check == NO_MEALS_LEFT)
 	{
@@ -108,6 +108,7 @@ int	main(int argc, char **argv)
 	if (check == DEATH)
 	{
 		detach_thread();
+		pthread_mutex_unlock(&g_data->print_mutex);
 		mutex_destroy_and_free();
 		return (ERROR);
 	}
