@@ -6,27 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/caniseed/Desktop/philosophers/philosophers/data_treads_init.c
+/Users/ez_mode/Developer/GitHub/philosophers/philo.c
 philo.h
-/Users/caniseed/Desktop/philosophers/philosophers/philo.h
+/Users/ez_mode/Developer/GitHub/philosophers/philo.h
 
-/Users/caniseed/Desktop/philosophers/philosophers/ft_atoi.c
-philo.h
-/Users/caniseed/Desktop/philosophers/philosophers/philo.h
-
-/Users/caniseed/Desktop/philosophers/philosophers/functions_1.c
-philo.h
-/Users/caniseed/Desktop/philosophers/philosophers/philo.h
-
-/Users/caniseed/Desktop/philosophers/philosophers/functions_2.c
-philo.h
-/Users/caniseed/Desktop/philosophers/philosophers/philo.h
-
-/Users/caniseed/Desktop/philosophers/philosophers/philo.c
-philo.h
-/Users/caniseed/Desktop/philosophers/philosophers/philo.h
-
-/Users/caniseed/Desktop/philosophers/philosophers/philo.h
+/Users/ez_mode/Developer/GitHub/philosophers/philo.h
 stdio.h
 -
 stdlib.h

@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:08:32 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/18 15:16:46 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/21 23:03:02 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int				right_fork;
 	int				left_fork;
 	int				meals_counter;
+	struct s_arg	*data_main;
 }				t_philo;
 
 typedef struct s_arg
@@ -50,23 +51,23 @@ typedef struct s_arg
 	t_philo			*philo;
 }				t_arg;
 
-t_arg	*g_data;
+//t_arg	*g_data;
 
 int				ft_atoi(const char *str);
 int				check_for_error(int argc, char **argv);
 unsigned long	get_time(void);
-void			data_init_2(void);
-t_arg			*data_init(char **argv);
+void			data_init_2(t_arg *main_data);
+t_arg			*data_init(char **argv, t_arg *main_data);
 void			my_usleep(unsigned long wait_time);
-void			print_message_2(int flag, int id, unsigned long time);
-void			print_message(int flag, int id, unsigned long time);
-void			*philo_actions(void *data);
-void			even_thread_create(void);
-void			odd_thread_create(void);
-int				waiter(void);
-void			mutex_init(void);
-void			join_thread(void);
-void			detach_thread(void);
-void			mutex_destroy_and_free(void);
+void			print_message_2(int flag, int id, unsigned long time, t_arg *main_data);
+void			print_message(int flag, int id, unsigned long time, t_arg *main_data);
+void			*philo_actions(void *data, t_arg *main_data);
+void			even_thread_create(t_arg *main_data);
+void			odd_thread_create(t_arg *main_data);
+int				waiter(t_arg *main_data);
+void			mutex_init(t_arg *main_data);
+void			join_thread(t_arg *main_data);
+void			detach_thread(t_arg *main_data);
+void			mutex_destroy_and_free(t_arg *main_data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: caniseed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 18:19:02 by caniseed          #+#    #+#             */
-/*   Updated: 2021/11/17 18:19:02 by caniseed         ###   ########.fr       */
+/*   Updated: 2021/11/21 02:00:11 by caniseed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,38 @@ void	my_usleep(unsigned long wait_time)
 		usleep(100);
 }
 
-void	mutex_init(void)
+void	mutex_init(t_arg *main_data)
 {
 	int	i;
 
 	i = 0;
-	while (i < g_data->number_of_philo)
+	while (i < main_data->number_of_philo)
 	{
-		pthread_mutex_init(&g_data->forks[i], NULL);
+		pthread_mutex_init(&main_data->forks[i], NULL);
 		i++;
 	}
 }
 
-void	join_thread(void)
+void	join_thread(t_arg *main_data)
 {
 	int	i;
 
 	i = 0;
-	while (i < g_data->number_of_philo)
+	while (i < main_data->number_of_philo)
 	{
-		pthread_join(g_data->philo[i].thread, NULL);
+		pthread_join(main_data->philo[i].thread, NULL);
 		i++;
 	}
 }
 
-void	detach_thread(void)
+void	detach_thread(t_arg *main_data)
 {
 	int	i;
 
 	i = 0;
-	while (i < g_data->number_of_philo)
+	while (i < main_data->number_of_philo)
 	{
-		pthread_detach(g_data->philo[i].thread);
+		pthread_detach(main_data->philo[i].thread);
 		i++;
 	}
 }
